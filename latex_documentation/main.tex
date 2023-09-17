@@ -1,0 +1,274 @@
+\documentclass[a4paper,11pt]{article}
+
+% Set page size and margins
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%Karnaugh Maps
+\usepackage{karnaugh-map}
+
+% TOC
+\usepackage{titlesec}
+
+% Lists
+\usepackage{enumitem}
+
+% Tables
+\usepackage{tabularx}
+
+% Code rendering
+\usepackage{listings}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage[colorlinks=true,linkcolor={black},citecolor={blue!80!black},urlcolor={blue!80!black}]{hyperref}
+
+% Custom shorthands
+%% Table cmds
+\newcommand\HSPC{\rule{0pt}{4ex}\rule[-2.0ex]{0pt}{0pt}}
+\newcommand\RSPC{\rule{0pt}{2.5ex}\rule[-1.25ex]{0pt}{0pt}}
+
+%% Math cmds
+\newcommand{\mathfsc}[2]{#1#2\normalsize}
+
+% Code bloc styling
+\lstdefinestyle{myStyle}{
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numbersep=10pt,
+    numberstyle=\normalsize\color{gray!80!black},
+    basicstyle=\large\ttfamily,
+    keywordstyle=\bfseries\color[HTML]{FE4A49},
+    commentstyle=\itshape\color[HTML]{A6A6A8},
+    identifierstyle=\color[HTML]{2AB7CA},
+    backgroundcolor=\color[HTML]{F4F4F8},
+    stringstyle=\color[HTML]{FED766}
+}
+
+
+\title{\textbf{Implementation of Gate ques over Arduino }}
+\author{Aditya Gupta}
+
+\begin{document}
+\date{}
+\maketitle
+
+% Make Table of contents from Sections
+\tableofcontents
+
+% Problem Statement
+\newpage
+\section{Problem}
+\label{sec:ques}
+\textbf{(GATE IN-2022 Ques 21)}\\
+\textbf{Q.22} The logic block shown has an output F:
+    \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1, baseline=(XXXX.south) ]
+\path (0,240);\path (414.20001220703125,0);\draw    ($(current bounding box.center)+(0,0.3em)$) node [anchor=south] (XXXX) {};
+%Shape: Not/Inverter Gate [id:dp3339025205092112] 
+\draw   (112.33,26) -- (138.08,37.53) -- (112.33,49.06) -- (112.33,26) -- cycle (103.75,37.53) -- (112.33,37.53) (143.23,37.53) -- (150.1,37.53) (138.08,37.53) .. controls (138.08,36.26) and (139.23,35.22) .. (140.66,35.22) .. controls (142.08,35.22) and (143.23,36.26) .. (143.23,37.53) .. controls (143.23,38.8) and (142.08,39.83) .. (140.66,39.83) .. controls (139.23,39.83) and (138.08,38.8) .. (138.08,37.53) -- cycle ;
+%Shape: Not/Inverter Gate [id:dp7163124349234677] 
+\draw   (112.46,69.43) -- (138.59,81.5) -- (112.46,93.57) -- (112.46,69.43) -- cycle (103.75,81.5) -- (112.46,81.5) (143.82,81.5) -- (150.79,81.5) (138.59,81.5) .. controls (138.59,80.17) and (139.76,79.09) .. (141.21,79.09) .. controls (142.65,79.09) and (143.82,80.17) .. (143.82,81.5) .. controls (143.82,82.83) and (142.65,83.91) .. (141.21,83.91) .. controls (139.76,83.91) and (138.59,82.83) .. (138.59,81.5) -- cycle ;
+%Shape: Nor Gate [id:dp31690613721938776] 
+\draw   (234.23,115.89) -- (234.23,122.72) .. controls (233.94,127.48) and (227.46,131.74) .. (217.61,133.64) .. controls (207.77,131.74) and (201.29,127.48) .. (200.99,122.72) -- (200.99,115.89) .. controls (211.28,118.82) and (223.95,118.82) .. (234.23,115.89) -- cycle (228.69,111.8) -- (228.69,117.26) (206.53,111.8) -- (206.53,117.26) (217.61,136.92) -- (217.61,141.29) (217.61,133.64) .. controls (219.45,133.64) and (220.94,134.38) .. (220.94,135.28) .. controls (220.94,136.19) and (219.45,136.92) .. (217.61,136.92) .. controls (215.78,136.92) and (214.29,136.19) .. (214.29,135.28) .. controls (214.29,134.38) and (215.78,133.64) .. (217.61,133.64) -- cycle ;
+%Shape: Nor Gate [id:dp4116735325184637] 
+\draw   (299.06,115.04) -- (299.06,122.24) .. controls (298.79,127.27) and (292.85,131.75) .. (283.82,133.76) .. controls (274.79,131.75) and (268.85,127.27) .. (268.58,122.24) -- (268.58,115.04) .. controls (278.01,118.13) and (289.63,118.13) .. (299.06,115.04) -- cycle (293.98,110.72) -- (293.98,116.48) (273.66,110.72) -- (273.66,116.48) (283.82,137.22) -- (283.82,141.83) (283.82,133.76) .. controls (285.5,133.76) and (286.87,134.54) .. (286.87,135.49) .. controls (286.87,136.44) and (285.5,137.22) .. (283.82,137.22) .. controls (282.14,137.22) and (280.77,136.44) .. (280.77,135.49) .. controls (280.77,134.54) and (282.14,133.76) .. (283.82,133.76) -- cycle ;
+%Shape: Nor Gate [id:dp5328780011823022] 
+\draw   (267.57,185.14) -- (267.57,192.09) .. controls (267.27,196.94) and (260.85,201.28) .. (251.09,203.21) .. controls (241.32,201.28) and (234.9,196.94) .. (234.6,192.09) -- (234.6,185.14) .. controls (244.8,188.12) and (257.37,188.12) .. (267.57,185.14) -- cycle (262.07,180.97) -- (262.07,186.53) (240.1,180.97) -- (240.1,186.53) (251.09,206.55) -- (251.09,211) (251.09,203.21) .. controls (252.91,203.21) and (254.38,203.96) .. (254.38,204.88) .. controls (254.38,205.8) and (252.91,206.55) .. (251.09,206.55) .. controls (249.26,206.55) and (247.79,205.8) .. (247.79,204.88) .. controls (247.79,203.96) and (249.26,203.21) .. (251.09,203.21) -- cycle ;
+%Straight Lines [id:da9297822581338184] 
+\draw    (150.1,38.07) -- (362.51,37.26) ;
+%Straight Lines [id:da7162482275559334] 
+\draw    (150.79,81.5) -- (363.2,80.7) ;
+%Straight Lines [id:da12598589679662986] 
+\draw    (228.72,38.33) -- (228.69,111.8) ;
+%Straight Lines [id:da530569889364189] 
+\draw    (81.82,38.33) -- (103.75,38.07) ;
+%Straight Lines [id:da363188723430675] 
+\draw    (50.79,57.64) -- (90.1,57.64) -- (361.82,57.1) ;
+%Straight Lines [id:da7323451708692215] 
+\draw    (43.2,100.54) -- (82.51,100.54) -- (354.23,100) ;
+%Straight Lines [id:da2618117419047583] 
+\draw    (81.82,81.77) -- (103.75,81.5) ;
+%Straight Lines [id:da9911873563672808] 
+\draw    (82.37,82.3) -- (82.51,100.54) ;
+%Straight Lines [id:da8110221754306643] 
+\draw    (81.82,38.33) -- (81.82,57.64) ;
+%Straight Lines [id:da5530787187647612] 
+\draw    (205.38,81.23) -- (206.53,111.8) ;
+%Straight Lines [id:da4919329037015716] 
+\draw    (273.09,101.2) -- (273.66,116.48) ;
+%Straight Lines [id:da7937984265603126] 
+\draw    (294,37.26) -- (293.98,110.72) ;
+%Straight Lines [id:da38066866711991665] 
+\draw    (217.61,141.29) -- (217.75,159.52) ;
+%Straight Lines [id:da7564897838504037] 
+\draw    (283.82,141.83) -- (283.96,160.06) ;
+%Straight Lines [id:da05827245903601863] 
+\draw    (217.75,159.52) -- (239.68,159.25) ;
+%Straight Lines [id:da8265983149132312] 
+\draw    (262.03,160.33) -- (283.96,160.06) ;
+%Straight Lines [id:da4061473665475648] 
+\draw    (239.68,159.25) -- (240.1,180.97) ;
+%Straight Lines [id:da21804328329017708] 
+\draw    (262.03,160.33) -- (262.07,180.97) ;
+% Text Node
+\draw (32,50) node [anchor=north west][inner sep=0.75pt]   [align=left] {B};
+% Text Node
+\draw (28,92) node [anchor=north west][inner sep=0.75pt]   [align=left] {A};
+\end{tikzpicture}
+
+\section{Introduction}
+\paragraph{}
+For a given set of Boolean Logic Inputs, we can define the following terms:
+\begin{itemize}
+    \item \textbf{Minterm} is a boolean expression resulting in an output of 1 for the minimum number of cells in a Karnaugh-Map (K-Map) and 0 in other cells.
+    \item \textbf{Sum of Products} is a boolean expression for the \textit{Sum} (OR) of various \textit{Product} (AND) terms.
+    \item \textbf{'do not care'} terms for a boolean expression are the set of input values for which the output of the function does not matter. The value for these can be taken as 0 or 1 by choice
+\end{itemize}
+\bigskip
+
+% Components used
+\section{Components}
+\begin{table}[ht]
+\centering
+\begin{tabularx}{0.8\textwidth} {
+    | >{\raggedright\arraybackslash}X
+    | >{\centering\arraybackslash}X
+    | >{\centering\arraybackslash}X 
+    |
+}
+    \hline
+    \centering\textbf{\large Component} & \textbf{\large Value} & \textbf{\large Quantity} \HSPC \\
+    \hline
+    Arduino & UNO & 1 \RSPC \\
+    \hline
+    Breadboard & - & 1 \RSPC \\
+    \hline
+    LED & - & 1 \RSPC \\
+    \hline
+    Jumper Wires & M-M & 10 \RSPC \\
+    \hline
+    Resistor & 220 $\Omega$ & 1 \RSPC \\
+    \hline
+\end{tabularx}
+\caption{Table of Components}
+\label{table:1}
+\end{table}
+\bigskip
+
+\newpage
+\section{Solution}
+\subsection{Karnaugh Map}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1, baseline=(XXXX.south) ]
+\path (0,282);\path (475.4000244140625,0);\draw    ($(current bounding box.center)+(0,0.3em)$) node [anchor=south] (XXXX) {};
+%Shape: Grid [id:dp9703746717393453] 
+\draw  [draw opacity=0] (143.39,72.04) -- (236.71,71.58) -- (237.42,166.62) -- (144.1,167.07) -- cycle ; \draw   (143.39,72.04) -- (144.1,167.07)(189.88,71.81) -- (190.6,166.85)(236.37,71.58) -- (237.09,166.62) ; \draw   (143.39,72.04) -- (236.71,71.58)(143.74,118.53) -- (237.06,118.07)(144.09,165.02) -- (237.41,164.56) ; \draw    ;
+%Straight Lines [id:da3246491340892026] 
+\draw    (143.39,72.04) -- (99.02,34.13) ;
+% Text Node
+\draw (153.66,85.23) node [anchor=north west][inner sep=0.75pt]   [align=left] {1};
+% Text Node
+\draw (201.15,122.96) node [anchor=north west][inner sep=0.75pt]   [align=left] {0};
+% Text Node
+\draw (201.15,85) node [anchor=north west][inner sep=0.75pt]   [align=left] {0};
+% Text Node
+\draw (154.95,122.96) node [anchor=north west][inner sep=0.75pt]   [align=left] {1};
+% Text Node
+\draw (128.43,95.77) node [anchor=north west][inner sep=0.75pt]   [align=left] {0};
+% Text Node
+\draw (128.08,131.61) node [anchor=north west][inner sep=0.75pt]   [align=left] {1};
+% Text Node
+\draw (121.08,34.51) node [anchor=north west][inner sep=0.75pt]   [align=left] {B};
+% Text Node
+\draw (99.56,53.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {A};
+% Text Node
+\draw (65,179.11) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\large The final expression is of output is Y = \ F(!B)}};
+% Text Node
+\draw (68,234) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\large Logic for the code will be Y = !B}};
+% Text Node
+\draw (170.43,53.77) node [anchor=north west][inner sep=0.75pt]   [align=left] {0};
+% Text Node
+\draw (218.08,56.61) node [anchor=north west][inner sep=0.75pt]   [align=left] {1};
+\end{tikzpicture}
+
+
+% Truth Table obtained from K-Map simplification
+\subsection{Truth Table}
+\label{sec:ttf}
+\begin{table}[!h]
+        \centering
+        
+\begin{tabular}{|p{0.33\textwidth}|p{0.33\textwidth}|p{0.33\textwidth}|}
+\hline 
+ A & B & C \\
+\hline 
+ 0 & 0 & 1 \\
+\hline 
+ 0 & 1 & 0 \\
+\hline 
+ 1 & 0 & 1 \\
+\hline 
+ 1 & 1 & 0 \\
+ \hline
+\end{tabular}
+        
+        \end{table}}
+
+% Connections
+\newpage
+\section{Connections}
+    \subsection{LED to Arduino}
+        LED connections to Arduino are as follows:
+        \begin{table}[ht]
+            \centering
+            \begin{tabular}{|c |c |c |c |}
+            \hline
+                \textbf{Arduino} & 5 & GND \HSPC \\
+            \hline
+                \textbf{LED} & + & - \HSPC \\ 
+            \hline
+            \end{tabular}
+            \caption{LED Connections}
+            \label{tab:cnct_led}
+        \end{table}
+        
+    \subsection{Input Pins to Arduino} {
+        Input Pin Connections to Arduino are as follows:
+        \begin{table}[ht]
+            \centering
+            \begin{tabular}{|c |c |c |c |c |}
+            \hline
+                \textbf{Arduino} & D2 & D3 \HSPC \\
+            \hline
+                \textbf{Term} & A & B  \HSPC \\
+            \hline
+            \end{tabular}
+            \caption{Input Pin Connections}
+            \label{tab:cnct_ip}
+        \end{table}
+    }
+    
+\subsection{Setting Input Pin Values}
+        The values of the Input pins are taken by connecting them to either $5V$ or GND according to \hyperref[sec:ttf]{Truth Table}
+\bigskip    
+
+\subsection{Repository}
+Code is also available online at the following repository:
+\begin{center}
+    \setlength{\fboxsep}{1em}
+    \fbox{
+        \parbox{0.9\textwidth}{
+            \centering
+            \small
+            \textbf{
+                \url{https://github.com/Aditya2004-hue/LATEX/blob/main/codes/gate.ino}
+            }
+        }
+    }
+    
+\end{center}
+
+\end{document}
