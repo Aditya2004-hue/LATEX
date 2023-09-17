@@ -12,7 +12,6 @@ QUESTION 21, GATE 2021-Q21
 - PlatformIO
     - Core[CLI]
 - LaTeX
-    - karnaugh-map
     - enumitems
     - listings
     - amsmath
@@ -24,20 +23,12 @@ QUESTION 21, GATE 2021-Q21
     - hyperref
 ---
 ## Build and Run
-bash
 $ git clone https://github.com/Aditya2004-hue/LATEX.git
-
-
-### Using [PlatformIO IDE](https://platformio.org/platformio-ide)
 1. Download IDE from https://platformio.org/platformio-ide
-2. Open the [ide/codes](ide/codes) folder
-3. Connect Arduino
-4. Build and Run
-
-### Using Terminal with [PlatformIO Core](https://github.com/platformio/platformio-core)
-1. Install PlatformIO Core CLI by following instructions from [here](https://platformio.org/install/cli)
-2. Navigate to [/ide/codes](ide/codes)
-3. Connect Arduino
-4. Run:
-bash
-$ pio run --target upload
+2. Install PlatformIO Core CLI by following instructions from [here](https://platformio.org/install/cli)
+3. Open the [ide/codes](ide/codes) folder
+4. Build and compile - 1. Create a Folder and put platform.ini file in that folder.
+                       2. Now create a folder name (src) in same folder you pasted the platformio.ini file and then  put code.ino file inside the src folder.
+                       3. Enter the directory of the folder where you have created platformio.ini and src using commmand cd. in the terminal.
+                       4. Enter the command (pio run).
+                       5. connect arduino and then upload the code using command (pio run -t upload).
