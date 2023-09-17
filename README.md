@@ -27,8 +27,9 @@ $ git clone https://github.com/Aditya2004-hue/LATEX.git
 1. Download IDE from https://platformio.org/platformio-ide
 2. Install PlatformIO Core CLI by following instructions from [here](https://platformio.org/install/cli)
 3. Open the [ide/codes](ide/codes) folder
-4. Build and compile - 1. Create a Folder and put platform.ini file in that folder.
-                       2. Now create a folder name (src) in same folder you pasted the platformio.ini file and then  put code.ino file inside the src folder.
-                       3. Enter the directory of the folder where you have created platformio.ini and src using commmand cd. in the terminal.
-                       4. Enter the command (pio run).
-                       5. connect arduino and then upload the code using command (pio run -t upload).
+4. Build and compile -
+         -- Create a Folder and put platform.ini file in that folder.
+         -- Now create a folder name (src) in same folder you pasted the platformio.ini file and then  put code.ino file inside the src folder.
+         -- Enter the directory of the folder where you have created platformio.ini and src using commmand cd. in the terminal.
+         -- Enter the command (pio run).
+         -- connect arduino and then upload the code using command (pio run -t upload).
