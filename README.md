@@ -1,4 +1,4 @@
-# LATEXCS2002
+# LATEXCS2022
 GATEQ-2022 IN Q21
 # Digital Design through Arduino
 -----------------------------
